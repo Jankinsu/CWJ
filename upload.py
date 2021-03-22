@@ -44,7 +44,7 @@ def main():
         elif opt in ("-f", "--message_file"):
             message_file = arg
 '''
-    if cookie_file  != "" and message_file != "":
+    if cookie_file !="" and message_file !="":
         cookie = Utils.load_cookie_from_file(cookie_file)
         upload_message = Utils.load_upload_message_file(message_file)
         Utils.upload_ncov_message(cookie, upload_message=upload_message)
