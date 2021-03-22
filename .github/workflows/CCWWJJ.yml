@@ -23,8 +23,8 @@ jobs:
         pip install requests
     - name: CWJ
       env:
-        username: ${{secrets.U}}
-        password: ${{secrets.P}}
+        U: ${{secrets.U}}
+        P: ${{secrets.P}}
       run: |
         # stop the build if there are Python syntax errors or undefined names
         python upload.py
