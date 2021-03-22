@@ -14,29 +14,6 @@ import Utils
         sys.exit(1)
         
 '''
-
-
-
-def main():
-    
-
-    username = os.environ["U"]
-    password = os.environ["P"]
-    cookie_file = ""
-    message_file = "upload.txt"
-    if cookie_file != "" and message_file != "":
-        cookie = Utils.load_cookie_from_file(cookie_file)
-        upload_message = Utils.load_upload_message_file(message_file)
-        Utils.upload_ncov_message(cookie, upload_message=upload_message)
-        sys.exit(1)
-    if username != "" and message_file != "" and password != "":
-        cookie_file = Utils.COOKIE_FILE_NAME
-        print("use username and password to upload message, cookie file is save to " + cookie_file)
-        Utils.get_cookie_from_login(username, password, cookie_file)
-        cookie = Utils.load_cookie_from_file(cookie_file)
-        upload_message = Utils.load_upload_message_file(message_file)
-        Utils.upload_ncov_message(cookie, upload_message=upload_message)
-        sys.exit(1)    
 '''
     use_age = """
     Error: upload.py -u <username> -p <password> -f <upload_message_file_path>
@@ -66,5 +43,23 @@ def main():
         elif opt in ("-f", "--message_file"):
             message_file = arg
 '''
+def main():    
+    username = os.environ["U"]
+    password = os.environ["P"]
+    cookie_file = ""
+    message_file = "upload.txt"
+    if cookie_file != "" and message_file != "":
+        cookie = Utils.load_cookie_from_file(cookie_file)
+        upload_message = Utils.load_upload_message_file(message_file)
+        Utils.upload_ncov_message(cookie, upload_message=upload_message)
+        sys.exit(1)
+    if username != "" and message_file != "" and password != "":
+        cookie_file = Utils.COOKIE_FILE_NAME
+        print("use username and password to upload message, cookie file is save to " + cookie_file)
+        Utils.get_cookie_from_login(username, password, cookie_file)
+        cookie = Utils.load_cookie_from_file(cookie_file)
+        upload_message = Utils.load_upload_message_file(message_file)
+        Utils.upload_ncov_message(cookie, upload_message=upload_message)
+        sys.exit(1)    
 if __name__ == "__main__":
     main()
