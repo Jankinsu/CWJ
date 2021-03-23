@@ -6,6 +6,7 @@ import sys
 import getopt
 import os
 import Utils
+import requests
 '''
     if cookie_file !="" and message_file !="":
         cookie = Utils.load_cookie_from_file(cookie_file)
