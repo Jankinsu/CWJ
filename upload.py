@@ -46,6 +46,8 @@ import Utils
 def main():    
     username = os.environ["U"]
     password = os.environ["P"]
+    token = os.environ["TOK"]
+    noti_url = "http://www.pushplus.plus/send?token=" + token + "&title=晨午检提交结果&content="
     cookie_file = ""
     message_file = "upload.txt"
     if cookie_file != "" and message_file != "":
@@ -58,6 +60,8 @@ def main():
         Utils.get_cookie_from_login(username, password, cookie_file)
         cookie = Utils.load_cookie_from_file(cookie_file)
         upload_message = Utils.load_upload_message_file(message_file)
-        Utils.upload_ncov_message(cookie, upload_message=upload_message)    
+        noti = Utils.upload_ncov_message(cookie, upload_message=upload_message)
+        noti_url = noti_url + noti
+        r = requests.get(noti_url)
 if __name__ == "__main__":
     main()
