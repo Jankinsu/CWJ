@@ -94,6 +94,7 @@ def upload_ncov_message(cookie, upload_message):
         noti = noti + "上报出现错误!" + r.json()['m']
         print("上报出现错误!")
         print("错误信息: ", r.json()['m'])
+    return noti 
 
 
 if __name__ == '__main__':
