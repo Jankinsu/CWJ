@@ -36,7 +36,6 @@ LOGIN_URL = "https://xxcapp.xidian.edu.cn/uc/wap/login/check"
 UPLOAD_URL = "https://xxcapp.xidian.edu.cn/xisuncov/wap/open-report/save"
 
 COOKIE_FILE_NAME = "cookie.txt"
-noti = ""
 
 
 def get_cookie_from_login(student_id: str, password: str, cookie_file_path: str):
@@ -50,7 +49,6 @@ def get_cookie_from_login(student_id: str, password: str, cookie_file_path: str)
     r = requests.post(LOGIN_URL, data={"username": student_id, "password": password}, headers=DEFAULT_HEADER)
     if r.status_code == 200:
         if r.json()['e'] == 0:
-            noti = noti + "登录成功"
             print("登录成功")
             with open(cookie_file_path, 'wb') as f:
                 pickle.dump(r.cookies, f)
@@ -85,6 +83,7 @@ def load_upload_message_file(file_path: str):
 
 
 def upload_ncov_message(cookie, upload_message):
+    noti = ""
     header = dict(DEFAULT_HEADER.items() | UPLOAD_HEADER.items())
     r = requests.post(UPLOAD_URL, cookies=cookie, headers=header, data=upload_message)
     if r.json()['e'] == 0:
